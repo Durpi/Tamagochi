@@ -5,17 +5,17 @@ namespace Tamagochi
 {
     public class Tamagochi
     {
-        Random generator = new Random();
+        static Random generator = new Random();
         List<string> words = new List<string>() {"death", "beheading", "execution"};
-        int hunger = 0;
-        int boredom = 0;
+        int hunger = 3;
+        int boredom = 3;
         bool isAlive = true;
         public string name;
 
         public void Feed()
         {
 
-            hunger--;
+            hunger -= 2;
 
         }
 
@@ -36,40 +36,50 @@ namespace Tamagochi
         {
 
             words.Add(word);
+            ReduceBoredom();
 
         }
 
         public void Tick()
         {
 
+            hunger++;
+            boredom++;
+            if (hunger == 10 || boredom == 10)
+            {
+                isAlive = false;
+            }
+
         }
 
         public void PrintStats()
         {
 
-            Console.WriteLine("Tamagochin har " + hunger + "/10 hunger" +
-            "\noch har " + boredom + "/10 boredom");
-
+            Console.WriteLine(name + " har\n" + hunger + "/10 hunger" +
+            "\n" + boredom + "/10 boredom");
+           
+            if (isAlive == true)
+            {
+                Console.WriteLine("The creature is alive");
+            }
+            else if (isAlive == false)
+            {
+                Console.WriteLine("The creature has died");
+            }
+            Console.ReadLine();
         }
 
         public bool GetAlive()
         {
 
-            if (isAlive == true)
-            {
-                return true;
-            }
-            else
-            {
-                return false;
-            }
+            return isAlive;
 
         }
 
         private void ReduceBoredom()
         {
 
-            boredom--;
+            boredom -= 2;
 
         }
 
