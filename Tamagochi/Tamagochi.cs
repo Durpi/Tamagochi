@@ -19,11 +19,10 @@ namespace Tamagochi
 
         }
 
-
         public void Hi()
         {
 
-            int whichWord = generator.Next(0, 3);
+            int whichWord = generator.Next(words.Count);
             string sayWord = words[whichWord];
 
             Console.WriteLine(sayWord);
@@ -55,18 +54,18 @@ namespace Tamagochi
         public void PrintStats()
         {
 
-            Console.WriteLine(name + " har\n" + hunger + "/10 hunger" +
+            Console.WriteLine(name + " has\n" + hunger + "/10 hunger" +
             "\n" + boredom + "/10 boredom");
            
             if (isAlive == true)
             {
-                Console.WriteLine("The creature is alive");
+                Console.WriteLine(name + " is alive");
             }
             else if (isAlive == false)
             {
-                Console.WriteLine("The creature has died");
+                Console.WriteLine(name + " has died");
             }
-            Console.ReadLine();
+            
         }
 
         public bool GetAlive()
